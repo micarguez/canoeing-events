@@ -11,6 +11,7 @@ import Lugares from './Componentes/Lugares';
 import NotFound from './Componentes/NotFound';
 import Registro from './Componentes/Registro';
 import Lugar from './Componentes/Lugar';
+import User from './Componentes/User';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -27,6 +28,7 @@ root.render(
             <Route path="/login" element={<Login />}/>
             <Route path="/lugar/:id" element={<Lugar />} />
             <Route path="/registro" element={<Registro />}/>
+            <Route path="/user/:username" element={<User />}/>
         </Routes>
     </Router>
 );

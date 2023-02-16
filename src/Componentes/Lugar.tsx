@@ -17,6 +17,9 @@ useEffect(() => {
   fetchLugar(id).then((data: any) => setLugar(data));
 }, []);
 
+const redirectToUser = (username: any) => {
+  window.location.replace(`/user/${username}`);
+}
 
 if(!checkHasToken()){
   window.location.replace("/login");
@@ -41,7 +44,7 @@ if(!checkHasToken()){
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">{lugar?.attributes?.user_creador.data.attributes.username}</Button>
+        <Button size="small" onClick={() => redirectToUser(lugar?.attributes?.user_creador.data.attributes.username)}>{lugar?.attributes?.user_creador.data.attributes.username}</Button>
         <Button href={lugar?.attributes?.ubicacion} size="small">Ver en google maps</Button>
       </CardActions>
     </Card>

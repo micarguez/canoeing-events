@@ -1,3 +1,13 @@
+export const fetchUsuarioPorUsername = (username?: string) => {
+  return fetch(`http://localhost:1337/api/users/?filters[username][$contains]=${username}`)
+    .then(response => response.json())
+    .then(
+      (resultadoApi) => {
+        return resultadoApi.data;
+      }
+    )
+};
+
 export const fetchUsuarios = () => {
   return fetch("http://localhost:1337/api/users")
     .then(response => response.json())
