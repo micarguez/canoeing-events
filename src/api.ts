@@ -1,8 +1,19 @@
+export const fetchUsuarios = () => {
+  return fetch("http://localhost:1337/api/users")
+    .then(response => response.json())
+    .then(
+      (resultadoApi) => {
+        return resultadoApi.data;
+      }
+    )
+};
+
 export const fetchLugares = () => {
     return fetch("http://localhost:1337/api/lugares?populate=deep")
       .then(response => response.json())
       .then(
         (resultadoApi) => {
+          console.log(resultadoApi);
           return resultadoApi.data;
         }
       )
@@ -10,6 +21,16 @@ export const fetchLugares = () => {
 
 export const fetchLugar = (id?: string) => {
   return fetch(`http://localhost:1337/api/lugares/${id}?populate=deep`)
+    .then(response => response.json())
+    .then(
+      (resultadoApi) => {
+        return resultadoApi.data;
+      }
+    )
+};
+
+export const fetchLugarPorNombre = (nombre?: string) => {
+  return fetch(`http://localhost:1337/api/lugares?populate=deep&filters[nombre][$contains]=${nombre}`)
     .then(response => response.json())
     .then(
       (resultadoApi) => {
