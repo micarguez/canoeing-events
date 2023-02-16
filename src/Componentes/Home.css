@@ -6,3 +6,11 @@ p{
     margin-top: 20px;
     text-align: center;
 }
+
+.carousel-sample{
+    margin: 0 auto 2em;
+    max-width: 500px;
+    height: 300px;
+}
+
+.item{ height:250px;}
