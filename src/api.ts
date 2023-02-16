@@ -70,26 +70,6 @@ export const login = (user: string, password: string) => {
               alert("Usuario invalido, revise sus credenciales");
             }
       });
-      fetch("http://localhost:1337/api/auth/local", {
-        method: "POST",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-        identifier: user,
-        password: password
-    })
-      }).then((respo) => respo.json())
-      .then((res) => {
-            if(res?.jwt){
-              localStorage.setItem("token", res?.jwt);
-              localStorage.setItem("user_id", res?.user?.id);
-              window.location.reload();
-            }else{
-              alert("Usuario invalido, revise sus credenciales");
-            }
-      });
 }
 
 export const registro = (user: string, email: string, password: string) => {

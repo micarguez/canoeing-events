@@ -10,6 +10,7 @@ import Eventos from './Componentes/Eventos';
 import Lugares from './Componentes/Lugares';
 import NotFound from './Componentes/NotFound';
 import Registro from './Componentes/Registro';
+import Lugar from './Componentes/Lugar';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -24,6 +25,7 @@ root.render(
             <Route path="/lugares" element={<Lugares />}/>
             <Route path="/eventos" element={<Eventos />}/>
             <Route path="/login" element={<Login />}/>
+            <Route path="/lugar/:id" element={<Lugar />} />
             <Route path="/registro" element={<Registro />}/>
         </Routes>
     </Router>
