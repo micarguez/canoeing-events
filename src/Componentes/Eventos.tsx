@@ -19,7 +19,7 @@ if(!token){
 }
 
   return (
-    <div className='App'>
+    <div className='App container'>
       {eventos?.map((evento: any) => (
             <>
           <Card key={evento.attributes.nombre} style={{ width: '18rem', margin: '15px' }}>
