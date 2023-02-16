@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Lugares.css';
+import './Lugar.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -24,12 +24,12 @@ if(!checkHasToken()){
 }
 
   return (
-    <div className='App'>
+    <div className='App container'>
          <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
-        height="140"
+        alt="lugar"
+        height="240"
         image={lugar?.attributes?.imagen_url}
       />
       <CardContent>

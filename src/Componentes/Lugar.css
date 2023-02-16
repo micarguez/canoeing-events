@@ -1,6 +1,11 @@
 .App {
   display: flex;
-  margin-left: 50%;
+  /*margin-left: 50%;*/
   width: 100%;
 }
 
+.container{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
