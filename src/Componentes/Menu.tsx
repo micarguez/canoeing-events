@@ -10,14 +10,16 @@ import './Menu.css';
 import Login from "./Login";
 
 function Menu() {
+
+    const token = localStorage.getItem('token');
+
     const onLogout = () => {
         localStorage.removeItem('token');
-        window.location.href = '/';
+        window.location.reload();
     }
 
     return (
     <>
-    <Router>
         <Navbar bg="light" expand="lg">
             <Container>
                 <Navbar.Brand href="/">My App</Navbar.Brand>
@@ -28,21 +30,12 @@ function Menu() {
                         <Nav.Link className="menuButtons" href="/lugares"> Lugares </Nav.Link>
                         <NavDropdown title="Mas opciones" id="basic-nav-dropdown">
                             <NavDropdown.Item className="menuButtons" href="/eventos"> Eventos </NavDropdown.Item>
-                            <NavDropdown.Item onClick={onLogout}> Logout </NavDropdown.Item>
+                            {(Boolean(token) && <NavDropdown.Item onClick={onLogout}> Logout </NavDropdown.Item>)}
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-    </Router>
-    <Router>
-        <Routes>
-            <Route path="/" element={<Home />}/>
-            <Route path="/lugares" element={<Lugares />}/>
-            <Route path="/eventos" element={<Eventos />}/>
-            <Route path="/login" element={<Login />}/>
-        </Routes>
-    </Router>
     </>
     );
     

@@ -16,6 +16,13 @@ useEffect(() => {
       )
 }, []);
 
+const token = localStorage.getItem('token');
+
+if(!token){
+  window.location.replace("/login");
+  return null;
+}
+
   return (
     <div className='container'>
       {Lugares?.map((lugar: any) => (

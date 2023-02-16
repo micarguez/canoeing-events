@@ -41,8 +41,11 @@ const Login = () => {
 
     const hasLoginToken = localStorage.getItem("token");
 
+    if(hasLoginToken){
+        window.location.replace("/");
+    }
+
 return(
-    hasLoginToken ? <Menu /> :
 
     <form 
     className="root"

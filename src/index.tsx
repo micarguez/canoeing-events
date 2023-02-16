@@ -8,13 +8,23 @@ import Menu from './Componentes/Menu';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Eventos from './Componentes/Eventos';
 import Lugares from './Componentes/Lugares';
+import NotFound from './Componentes/NotFound';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 root.render(
-    <Login/>
+    <Router>
+      <Menu/>
+        <Routes>
+            <Route path="*" element={<NotFound />}/>
+            <Route path="/" element={<Home />}/>
+            <Route path="/lugares" element={<Lugares />}/>
+            <Route path="/eventos" element={<Eventos />}/>
+            <Route path="/login" element={<Login />}/>
+        </Routes>
+    </Router>
 );
 
 // If you want to start measuring performance in your app, pass a function
