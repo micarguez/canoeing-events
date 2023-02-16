@@ -1,10 +1,9 @@
 import React from 'react';
+import { checkHasToken } from '../utils';
 
 function Home(){
-    
-    const token = localStorage.getItem('token');
 
-    if(!token){
+    if(!checkHasToken()){
     window.location.replace("/login");
     return null;
     }

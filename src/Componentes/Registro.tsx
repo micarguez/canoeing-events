@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import "./Login.css";
-import { login } from "../api";
+import "./Registro.css";
+import { registro } from "../api";
 
-const Login = () => {
-  const [user, setuser] = useState("");
+const Registro = () => {
+  const [user, setUser] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
  const handleSubmit = async (e: any) => {
   e.preventDefault();
-  login(user, password);
+  registro(user, email, password);
 };
-
-const redirectToRegistro = () => {
-  window.location.replace("/registro");
-}
 
 const hasLoginToken = localStorage.getItem("token");
 
@@ -24,7 +21,7 @@ const hasLoginToken = localStorage.getItem("token");
   }
 
   return (
-    <><form
+    <form
       className="root"
       noValidate
       autoComplete="off"
@@ -36,27 +33,33 @@ const hasLoginToken = localStorage.getItem("token");
           type="user"
           autoComplete="false"
           value={user}
-          onChange={(e: any) => setuser(e.target.value)} />
-        <br />
-        <br />
+          onChange={(e: any) => setUser(e.target.value)}
+        />
+         <br />
+         <br />
+         <TextField
+          label="Email"
+          type="email"
+          autoComplete="false"
+          value={email}
+          onChange={(e: any) => setEmail(e.target.value)}
+        />
+         <br />
+         <br />
         <TextField
           label="Password"
           type="password"
           autoComplete="false"
           value={password}
-          onChange={(e: any) => setPassword(e.target.value)} />
+          onChange={(e: any) => setPassword(e.target.value)}
+        />
       </div>
       <br />
       <Button variant="contained" color="primary" type="submit">
-        Iniciar sesión
-      </Button>
-      <br />
-      <br />
-    <Button variant="contained" color="primary" onClick={redirectToRegistro}>
         Registrarse
       </Button>
-    </form></>
+    </form>
   );
 };
 
-export default Login;
+export default Registro;

@@ -2,31 +2,28 @@ import React, { useEffect, useState } from 'react';
 import './Lugares.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { checkHasToken } from '../utils';
+import { fetchLugares } from '../api';
 function Lugares() {
-const [Lugares, setLugares] = useState<any>();
+  const [lugares, setLugares] = useState([]);
 
 useEffect(() => {
-    fetch("http://localhost:1337/api/lugares?populate=deep")
-      .then(response => response.json())
-      .then(
-        (resultadoApi) => {
-          console.log('RESULTADO', resultadoApi);
-          setLugares(resultadoApi.data);
-        }
-      )
+  fetchLugares().then((data: any) => setLugares(data));
 }, []);
 
-const token = localStorage.getItem('token');
+const redirectToLugar = (id: any) => {
+  window.location.replace(`/lugar/${id}`);
+}
 
-if(!token){
+if(!checkHasToken()){
   window.location.replace("/login");
   return null;
 }
 
   return (
-    <div className='container'>
-      {Lugares?.map((lugar: any) => (
-          <><Card key={lugar?.attributes?.id} style={{ width: '18rem' }}>
+    <div className='App container'>
+      {lugares?.map((lugar: any) => (
+          <><Card onClick={() => redirectToLugar(lugar?.id)} key={lugar?.attributes?.nombre} style={{ width: '18rem', margin: '15px', cursor: 'pointer' }}>
           <Card.Img variant="top" src={lugar?.attributes?.imagen_url} />
           <Card.Body>
             <Card.Title>{lugar?.attributes?.nombre}</Card.Title>
