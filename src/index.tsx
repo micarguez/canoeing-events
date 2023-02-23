@@ -12,6 +12,7 @@ import NotFound from './Componentes/NotFound';
 import Registro from './Componentes/Registro';
 import Lugar from './Componentes/Lugar';
 import User from './Componentes/User';
+import Lugares2 from './Componentes/Lugares';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -23,12 +24,12 @@ root.render(
         <Routes>
             <Route path="*" element={<NotFound />}/>
             <Route path="/" element={<Home />}/>
-            <Route path="/lugares" element={<Lugares />}/>
+            <Route path="/lugares" element={<Lugares2 />}/>
             <Route path="/eventos" element={<Eventos />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/lugar/:id" element={<Lugar />} />
             <Route path="/registro" element={<Registro />}/>
-            <Route path="/user/:username" element={<User />}/>
+            <Route path="/users/:username" element={<User />}/>
         </Routes>
     </Router>
 );

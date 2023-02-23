@@ -40,5 +40,13 @@
 .container{
   margin-top: 20px;
   display: flex;
-  justify-content: space-between;
+}
+
+.searchInput_Container{
+  margin-top: 10px;
+  text-align: center;
+}
+
+#filter{
+  border-radius: 3px;
 }

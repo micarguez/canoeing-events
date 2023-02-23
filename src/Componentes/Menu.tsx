@@ -2,12 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Eventos from './Eventos';
-import Lugares from './Lugares';
-import Home from './Home';
 import './Menu.css';
-import Login from "./Login";
 
 function Menu() {
 

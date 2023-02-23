@@ -1,9 +1,9 @@
-export const fetchUsuarioPorUsername = (username?: string) => {
-  return fetch(`http://localhost:1337/api/users/?filters[username][$contains]=${username}`)
+export const fetchUsuario = (username?: string) => {
+  return fetch(`http://localhost:1337/api/users/?filters[username][$eq]=${username}`)
     .then(response => response.json())
     .then(
       (resultadoApi) => {
-        return resultadoApi.data;
+        return resultadoApi[0];
       }
     )
 };
