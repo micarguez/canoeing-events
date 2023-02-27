@@ -58,6 +58,7 @@ if(!token){
               className="datePicker"
               label="Fecha desde"
               inputFormat="DD/MM/YYYY"
+              maxDate={new Date(selectedDateHasta)}
               value={selectedDateDesde}
               onChange={handleDateChangeDesde}
               renderInput={(params) => <TextField {...params} />}
@@ -69,6 +70,7 @@ if(!token){
         <DesktopDatePicker
               label="Fecha hasta"
               inputFormat="DD/MM/YYYY"
+              minDate={new Date(selectedDateDesde)}
               value={selectedDateHasta}
               onChange={handleDateChangeHasta}
               renderInput={(params) => <TextField {...params} />}
