@@ -3,15 +3,19 @@ import './Lugares.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { checkHasToken } from '../utils';
-import { fetchLugares, fetchLugarPorNombreYDesc, fetchLugarPorTipoAguas, fetchLugarPorUsuario } from '../api';
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import { fetchLugares, fetchLugarPorNombreYDesc, fetchLugarPorTipoAguas, fetchLugarPorUsuario, fetchUsuarios } from '../api';
+import { CardActions, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material';
 
 function Lugares() {
   
 const [lugares, setLugares] = useState([])
 
+const [usuarios, setUsuarios] = useState([])
+
 useEffect(() => {
   fetchLugares().then((data: any) => setLugares(data));
+  fetchUsuarios().then((data: any) => setUsuarios(data));
+  console.log(usuarios)
 }, []);
 
 const handleChange = (event: { target: { value: any; }; }) => {
@@ -32,6 +36,11 @@ const handleResetearFiltro = () => {
 
 const redirectToLugar = (id: any) => {
   window.location.replace(`/lugar/${id}`);
+}
+
+const redirectToLugaresUsuario = (user_creador: any) => {
+  fetchLugarPorUsuario(user_creador).then((data: any) => setLugares(data));
+  
 }
 
 if(!checkHasToken()){
@@ -68,6 +77,24 @@ if(!checkHasToken()){
         <Button className="btn-filtro" onClick={handleResetearFiltro} variant="primary">
                 Resetear filtros
         </Button>
+
+        <div className="filtro_usuario">
+        {usuarios?.map((user: any) => (
+          <><Card>
+          <CardActions className="text-container">
+                <Typography fontSize={17} gutterBottom variant="h6" component="div">
+                Nombre de usuario: {user?.username}
+                </Typography>
+                <Typography fontSize={17} gutterBottom variant="h6" component="div">
+                Email de usuario: {user?.email}
+                </Typography>
+                <Button onClick={() => redirectToLugaresUsuario(user?.username)}>
+                  Ver lugares creados por este usuario
+                </Button>
+            </CardActions>
+          </Card><br /></>
+          ))}
+        </div>
       </div>
       
       

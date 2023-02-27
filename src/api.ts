@@ -13,7 +13,7 @@ export const fetchUsuarios = () => {
     .then(response => response.json())
     .then(
       (resultadoApi) => {
-        return resultadoApi.data;
+        return resultadoApi;
       }
     )
 };
@@ -23,7 +23,6 @@ export const fetchLugares = () => {
       .then(response => response.json())
       .then(
         (resultadoApi) => {
-          console.log(resultadoApi);
           return resultadoApi.data;
         }
       )

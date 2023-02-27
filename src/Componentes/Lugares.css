@@ -49,10 +49,13 @@
 .searchInput_Container{
   padding: 10px;
   margin-top: 25px;
-  text-align: center;
 }
 
 .filtro_aguas{
+  padding: 10px;
+}
+
+.filtro_usuario{
   padding: 10px;
 }
 
