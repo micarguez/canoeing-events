@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import { checkHasToken } from '../utils';
 import { fetchUsuario } from '../api';
 import { useParams } from 'react-router-dom';
+import ImageOne from './../img/user.jpg';
+
 function User() {
   const [user, setUser] = useState<any>(null);
   let { username } = useParams();
@@ -26,6 +28,12 @@ if(!checkHasToken()){
   return (
     <div className='App container'>
          <Card sx={{ maxWidth: 345 }} key={user?.attributes?.username}>
+            <CardMedia
+              component="img"
+              alt="lugar"
+              height="240"
+              image={ImageOne}
+            />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {user?.username}
