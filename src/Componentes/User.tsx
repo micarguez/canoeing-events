@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Lugar.css';
+import './User.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -42,10 +42,13 @@ if(!checkHasToken()){
                     
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">Nombre: {user?.username}</Button>
-                
-                <Button size="small">{user?.email}</Button>
+            <CardActions className="text-container">
+                <Typography fontSize={17} gutterBottom variant="h6" component="div">
+                Nombre de usuario: {user?.username}
+                </Typography>
+                <Typography fontSize={17} gutterBottom variant="h6" component="div">
+                Email de usuario: {user?.email}
+                </Typography>
             </CardActions>
         </Card>
     </div>
