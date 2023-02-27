@@ -25,6 +25,11 @@ const handleChangeRadioButton = (event: { target: { value: any; }; }) => {
   fetchLugarPorTipoAguas(subs[1]).then((data: any) => setLugares(data));
 };
 
+const handleResetearFiltro = () => {
+
+  fetchLugares().then((data: any) => setLugares(data));
+};
+
 const redirectToLugar = (id: any) => {
   window.location.replace(`/lugar/${id}`);
 }
@@ -59,6 +64,10 @@ if(!checkHasToken()){
             </RadioGroup>
           </FormControl>
         </div>
+
+        <Button className="btn-filtro" onClick={handleResetearFiltro} variant="primary">
+                Resetear filtros
+        </Button>
       </div>
       
       
