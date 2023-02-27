@@ -37,7 +37,19 @@
   }
 }
 
+.wrapper{
+  display: flex;
+}
+
 .container{
   margin-top: 20px;
   display: flex;
+}
+
+.filtro-fecha{
+  margin-top: 25px;
+}
+
+.datePicker{
+  padding: 10px;
 }

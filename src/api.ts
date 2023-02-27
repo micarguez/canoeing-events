@@ -49,6 +49,16 @@ export const fetchLugarPorNombre = (nombre?: string) => {
     )
 };
 
+export const fetchLugarPorUsuario = (user_creador?: string) => {
+  return fetch(`http://localhost:1337/api/lugares?populate=deep&filters[user_creador][username][$eq]=${user_creador}`)
+    .then(response => response.json())
+    .then(
+      (resultadoApi) => {
+        return resultadoApi.data;
+      }
+    )
+};
+
 export const fetchLugarPorNombreYDesc = (texto?: string) => {
   return fetch(`http://localhost:1337/api/lugares?populate=deep&filters[$or][0][nombre][$contains]=${texto}&filters[$or][1][descripcion][$contains]=${texto}`)
     .then(response => response.json())
@@ -60,7 +70,7 @@ export const fetchLugarPorNombreYDesc = (texto?: string) => {
 };
 
 export const fetchLugarPorTipoAguas = (tipo?: string) => {
-  return fetch(`http://localhost:1337/api/lugares?populate=deep&filters[tipo][$contains]=${tipo}`)
+  return fetch(`http://localhost:1337/api/lugares?populate=deep&filters[tipo][nombre][$contains]=${tipo}`)
     .then(response => response.json())
     .then(
       (resultadoApi) => {
@@ -77,6 +87,16 @@ export const fetchEventos = () => {
           return resultadoApi.data;
         }
       )
+};
+
+export const fetchEventoEntreFechas = (fechaDesde?: string, fechaHasta?: string) => {
+  return fetch(`http://localhost:1337/api/eventos?populate=deep&filters[fecha][$gte]=${fechaDesde}&filters[fecha][$lte]=${fechaHasta}`)
+    .then(response => response.json())
+    .then(
+      (resultadoApi) => {
+        return resultadoApi.data;
+      }
+    )
 };
 
 export const login = (user: string, password: string) => {
