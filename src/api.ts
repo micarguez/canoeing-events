@@ -49,6 +49,26 @@ export const fetchLugarPorNombre = (nombre?: string) => {
     )
 };
 
+export const fetchLugarPorNombreYDesc = (texto?: string) => {
+  return fetch(`http://localhost:1337/api/lugares?populate=deep&filters[$or][0][nombre][$contains]=${texto}&filters[$or][1][descripcion][$contains]=${texto}`)
+    .then(response => response.json())
+    .then(
+      (resultadoApi) => {
+        return resultadoApi.data;
+      }
+    )
+};
+
+export const fetchLugarPorTipoAguas = (tipo?: string) => {
+  return fetch(`http://localhost:1337/api/lugares?populate=deep&filters[tipo][$contains]=${tipo}`)
+    .then(response => response.json())
+    .then(
+      (resultadoApi) => {
+        return resultadoApi.data;
+      }
+    )
+};
+
 export const fetchEventos = () => {
     return fetch("http://localhost:1337/api/eventos?populate=deep")
       .then(response => response.json())

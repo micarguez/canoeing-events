@@ -12,7 +12,7 @@ useEffect(() => {
 }, []);
 
 const handleChange = (event: { target: { value: any; }; }) => {
-  fetchLugarPorNombre(event.target.value).then((data: any) => setLugares(data));
+  fetchLugarPorNombreYDesc(event.target.value).then((data: any) => setLugares(data));
 };
 
 const redirectToLugar = (id: any) => {
