@@ -35,7 +35,7 @@ if(!checkHasToken()){
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Hola {user?.username}</Button>
+                <Button size="small">Nombre: {user?.username}</Button>
                 
                 <Button size="small">{user?.email}</Button>
             </CardActions>

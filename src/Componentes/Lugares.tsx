@@ -3,10 +3,9 @@ import './Lugares.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { checkHasToken } from '../utils';
-import { fetchLugares, fetchLugarPorNombre } from '../api';
+import { fetchLugares, fetchLugarPorNombre, fetchLugarPorNombreYDesc } from '../api';
 function Lugares() {
   const [lugares, setLugares] = useState([])
-  const [lugaresF, setLugaresF] = useState([])
 
 useEffect(() => {
   fetchLugares().then((data: any) => setLugares(data));
