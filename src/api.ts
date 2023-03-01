@@ -78,6 +78,23 @@ export const fetchLugarPorTipoAguas = (tipo?: string) => {
     )
 };
 
+export const fetchLugaresGuardados = (userId?: string, token?: any) => {
+  return fetch(`http://localhost:1337/api/lugares-guardados?populate=deep&filters[user][id][$eq]=${userId}`, {
+    method: "GET",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+  })
+    .then(response => response.json())
+    .then(
+      (resultadoApi) => {
+        return resultadoApi.data;
+      }
+    )
+}
+
 export const fetchEventos = () => {
     return fetch("http://localhost:1337/api/eventos?populate=deep")
       .then(response => response.json())
@@ -121,26 +138,44 @@ export const login = (user: string, password: string) => {
       });
 }
 
-export const registro = (user: string, email: string, password: string) => {
-    fetch("http://localhost:1337/api/auth/local/register", {
+export const guardarLugar = (lugar: string, user: any, token: any) => {
+    fetch("http://localhost:1337/api/lugares-guardados?populate=deep", {
       method: "POST",
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
       },
       body: JSON.stringify({
-      username: user,
-      email: email,
-      password: password
-  })
-    }).then((respo) => respo.json())
-    .then((res) => {
-          if(res?.jwt){
-            localStorage.setItem("token", res?.jwt);
-            localStorage.setItem("user_id", res?.user?.id);
-            window.location.reload();
-          }else{
-            alert("Datos invalidos");
-          }
-    });
+        "data": {
+            "lugar": lugar,
+            "user": user
+        }
+    })
+    })
+    .then((respo) => respo.json())
+}
+
+export const registro = (user: string, email: string, password: string) => {
+  fetch("http://localhost:1337/api/auth/local/register", {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+    username: user,
+    email: email,
+    password: password
+})
+  }).then((respo) => respo.json())
+  .then((res) => {
+        if(res?.jwt){
+          localStorage.setItem("token", res?.jwt);
+          localStorage.setItem("user_id", res?.user?.id);
+          window.location.reload();
+        }else{
+          alert("Datos invalidos");
+        }
+  });
 }

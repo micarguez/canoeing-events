@@ -13,6 +13,7 @@ import Registro from './Componentes/Registro';
 import Lugar from './Componentes/Lugar';
 import User from './Componentes/User';
 import Lugares2 from './Componentes/Lugares';
+import LugaresGuardados from './Componentes/LugaresGuardados';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -30,6 +31,7 @@ root.render(
             <Route path="/lugar/:id" element={<Lugar />} />
             <Route path="/registro" element={<Registro />}/>
             <Route path="/users/:username" element={<User />}/>
+            <Route path="/lugares-guardados" element={<LugaresGuardados />}/>
         </Routes>
     </Router>
 );

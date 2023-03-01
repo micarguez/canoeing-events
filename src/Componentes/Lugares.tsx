@@ -3,8 +3,9 @@ import './Lugares.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { checkHasToken } from '../utils';
-import { fetchLugares, fetchLugarPorNombreYDesc, fetchLugarPorTipoAguas, fetchLugarPorUsuario, fetchUsuarios } from '../api';
-import { CardActions, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material';
+import { fetchLugares, fetchLugarPorNombreYDesc, fetchLugarPorTipoAguas, fetchLugarPorUsuario, fetchUsuarios, guardarLugar } from '../api';
+import { Alert, Box, CardActions, Collapse, FormControl, FormControlLabel, FormLabel, IconButton, Radio, RadioGroup, Typography } from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save';
 
 function Lugares() {
   
@@ -15,7 +16,6 @@ const [usuarios, setUsuarios] = useState([])
 useEffect(() => {
   fetchLugares().then((data: any) => setLugares(data));
   fetchUsuarios().then((data: any) => setUsuarios(data));
-  console.log(usuarios)
 }, []);
 
 const handleChange = (event: { target: { value: any; }; }) => {
@@ -34,12 +34,20 @@ const handleResetearFiltro = () => {
   fetchLugares().then((data: any) => setLugares(data));
 };
 
+const handleSubmit = async (lugar: any) => {
+  let user = localStorage.getItem('user_id');
+  let token = localStorage.getItem('token');
+  guardarLugar(lugar, user, token);
+  alert('Se guardó el lugar correctamente!');
+};
+
+
 const redirectToLugar = (id: any) => {
   window.location.replace(`/lugar/${id}`);
 }
 
-const redirectToLugaresUsuario = (user_creador: any) => {
-  fetchLugarPorUsuario(user_creador).then((data: any) => setLugares(data));
+const redirectToLugaresUsuario = (username: any) => {
+  fetchLugarPorUsuario(username).then((data: any) => setLugares(data));
   
 }
 
@@ -106,16 +114,21 @@ if(!checkHasToken()){
       
       <div className='App container'>
         {lugares?.map((lugar: any) => (
-          <><Card onClick={() => redirectToLugar(lugar?.id)} key={lugar?.attributes?.nombre} style={{ width: '18rem', margin: '15px', cursor: 'pointer' }}>
-            <Card.Img variant="top" src={lugar?.attributes?.imagen_url} />
+          <><Card style={{ width: '18rem', margin: '15px', cursor: 'pointer' }}>
+            <Card.Img onClick={() => redirectToLugar(lugar?.id)} key={lugar?.attributes?.nombre} variant="top" src={lugar?.attributes?.imagen_url} />
             <Card.Body>
               <Card.Title>{lugar?.attributes?.nombre}</Card.Title>
               <Card.Text>
                 {lugar?.attributes?.descripcion}
               </Card.Text>
-              <Button href={lugar?.attributes?.ubicacion} variant="primary">
-                Ver en google maps
-              </Button>
+              <div className="controlBtns">
+                <Button id="btnMaps" href={lugar?.attributes?.ubicacion} variant="primary">
+                  Ver en google maps
+                </Button>
+                  <Button id="btnSave" onClick={(e:any) => handleSubmit(lugar?.id)} variant="primary">
+                    <SaveIcon />
+                  </Button>
+              </div>
             </Card.Body>
           </Card><br /></>
         ))}
