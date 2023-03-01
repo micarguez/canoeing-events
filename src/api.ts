@@ -68,6 +68,23 @@ export const fetchLugarPorNombreYDesc = (texto?: string) => {
     )
 };
 
+export const fetchLugarGuardadoPorNombreYDesc = (texto?: string, userId?: string, token?: any) => {
+  return fetch(`http://localhost:1337/api/lugares-guardados?populate=deep&filters[user][id][$eq]=${userId}&filters[$or][0][lugar][nombre][$contains]=${texto}&filters[$or][1][lugar][descripcion][$contains]=${texto}`, {
+    method: "GET",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+  })
+    .then(response => response.json())
+    .then(
+      (resultadoApi) => {
+        return resultadoApi.data;
+      }
+    )
+};
+
 export const fetchLugarPorTipoAguas = (tipo?: string) => {
   return fetch(`http://localhost:1337/api/lugares?populate=deep&filters[tipo][nombre][$contains]=${tipo}`)
     .then(response => response.json())

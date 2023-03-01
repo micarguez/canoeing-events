@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './Lugares.css';
+import './LugaresGuardados.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { checkHasToken } from '../utils';
-import { eliminarLugar, fetchLugaresGuardados, fetchLugarPorNombreYDesc } from '../api';
+import { eliminarLugar, fetchLugaresGuardados, fetchLugarGuardadoPorNombreYDesc, fetchLugarPorNombreYDesc } from '../api';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function LugaresGuardados() {
@@ -17,7 +17,7 @@ useEffect(() => {
 }, []);
 
 const handleChange = (event: { target: { value: any; }; }) => {
-  fetchLugarPorNombreYDesc(event.target.value).then((data: any) => setLugares(data));
+  fetchLugarGuardadoPorNombreYDesc(event.target.value, user, token).then((data: any) => setLugares(data));
 };
 
 const handleSubmit = async (lugar: any) => {
@@ -37,10 +37,8 @@ if(!checkHasToken()){
 
   return (
     <>
-    <div className="wrapper">
         <div className="searchInput_Container">
           <input
-          className="search"
           placeholder="Busca un lugar..." 
           onChange={handleChange}
           />
@@ -67,7 +65,6 @@ if(!checkHasToken()){
             </Card.Body>
           </Card><br /></>
         ))}
-      </div>
       </div>
       </>
   );
