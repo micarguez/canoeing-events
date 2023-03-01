@@ -156,6 +156,17 @@ export const guardarLugar = (lugar: string, user: any, token: any) => {
     .then((respo) => respo.json())
 }
 
+export const eliminarLugar = (idLugar: string, token: any) => {
+    return fetch(`http://localhost:1337/api/lugares-guardados/${idLugar}`, {
+      method: "DELETE",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }})
+    .then(response => response.json())
+}
+
 export const registro = (user: string, email: string, password: string) => {
   fetch("http://localhost:1337/api/auth/local/register", {
     method: "POST",

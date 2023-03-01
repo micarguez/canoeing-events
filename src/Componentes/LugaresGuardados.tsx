@@ -3,7 +3,8 @@ import './Lugares.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { checkHasToken } from '../utils';
-import { fetchLugaresGuardados, fetchLugarPorNombreYDesc } from '../api';
+import { eliminarLugar, fetchLugaresGuardados, fetchLugarPorNombreYDesc } from '../api';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function LugaresGuardados() {
   
@@ -17,6 +18,12 @@ useEffect(() => {
 
 const handleChange = (event: { target: { value: any; }; }) => {
   fetchLugarPorNombreYDesc(event.target.value).then((data: any) => setLugares(data));
+};
+
+const handleSubmit = async (lugar: any) => {
+  eliminarLugar(lugar, token);
+  alert('Se eliminó el lugar correctamente!');
+  fetchLugaresGuardados(user, token).then((data: any) => setLugares(data));
 };
 
 const redirectToLugar = (id: any) => {
@@ -53,6 +60,9 @@ if(!checkHasToken()){
                 <Button id="btnMaps" href={lugar?.attributes?.lugar?.data?.attributes?.ubicacion} variant="primary">
                   Ver en google maps
                 </Button>
+                <Button id="btnDelete" onClick={(e:any) => handleSubmit(lugar?.id)} variant="primary">
+                    <DeleteIcon />
+                  </Button>
               </div>
             </Card.Body>
           </Card><br /></>
