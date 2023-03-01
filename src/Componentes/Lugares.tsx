@@ -82,11 +82,17 @@ if(!checkHasToken()){
         {usuarios?.map((user: any) => (
           <><Card>
           <CardActions className="text-container">
-                <Typography fontSize={17} gutterBottom variant="h6" component="div">
-                Nombre de usuario: {user?.username}
+                <Typography fontWeight={600} fontSize={17} gutterBottom variant="h6" component="div">
+                Nombre de usuario:
                 </Typography>
-                <Typography fontSize={17} gutterBottom variant="h6" component="div">
-                Email de usuario: {user?.email}
+                <Typography fontSize={16} gutterBottom variant="h6" component="div">
+                {user?.username}
+                </Typography>
+                <Typography fontWeight={600} fontSize={17} gutterBottom variant="h6" component="div">
+                Email de usuario:
+                </Typography>
+                <Typography fontSize={16} gutterBottom variant="h6" component="div">
+                {user?.email}
                 </Typography>
                 <Button onClick={() => redirectToLugaresUsuario(user?.username)}>
                   Ver lugares creados por este usuario
