@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { checkHasToken } from '../utils';
 import { fetchLugar } from '../api';
 import { useParams } from 'react-router-dom';
+import PersonIcon from '@mui/icons-material/Person';
 
 function Lugar() {
   const [lugar, setLugar] = useState<any>(null);
@@ -46,10 +47,13 @@ if(!checkHasToken()){
               </Typography>
             </CardContent>
             <CardActions>
+            <Typography variant="body2" color="text.secondary">
+            Usuario creador: {lugar?.attributes?.user_creador.data.attributes.username}
+              </Typography>
               <Button size="small" onClick={() => redirectToUser(lugar?.attributes?.user_creador.data.attributes.username)}>
-                {lugar?.attributes?.user_creador.data.attributes.username} usuario creador
+                <PersonIcon/>
               </Button>
-              <Button href={lugar?.attributes?.ubicacion} size="small">Ver en google maps</Button>
+              <Button variant="contained" color="primary" href={lugar?.attributes?.ubicacion} size="small">Ver en google maps</Button>
             </CardActions>
           </Card>
     </div>

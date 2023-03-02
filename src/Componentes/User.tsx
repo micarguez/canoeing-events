@@ -6,10 +6,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { checkHasToken } from '../utils';
-import { fetchUsuario } from '../api';
+import { checkHasToken, redirectToLugares } from '../utils';
+import { fetchLugarPorUsuario, fetchUsuario } from '../api';
 import { useParams } from 'react-router-dom';
 import ImageOne from './../img/user.jpg';
+import setLugares from './Lugares';
 
 function User() {
   const [user, setUser] = useState<any>(null);
@@ -19,6 +20,15 @@ useEffect(() => {
     fetchUsuario(username).then((data: any) => setUser(data));
 }, []);
 
+ const redirectToLugaresUsuario = (user_creador: any) => {
+   //fetchLugarPorUsuario(user_creador).then((data: any) => setLugares(data));
+   window.location.replace(`/lugares`);
+   
+ }
+
+// const handleChangeUsuarios = (user_creador: string) => {
+//   fetchLugarPorUsuario(user_creador).then((data: any) => setLugares(data));
+// };
 
 if(!checkHasToken()){
   window.location.replace("/login");
@@ -49,6 +59,9 @@ if(!checkHasToken()){
                 <Typography fontSize={17} gutterBottom variant="h6" component="div">
                 Email de usuario: {user?.email}
                 </Typography>
+                <Button variant="contained" color="primary" size="small" onClick={() => redirectToLugaresUsuario(user?.username)}>
+                  Ver lugares creados por este usuario
+                </Button>
             </CardActions>
         </Card>
     </div>
