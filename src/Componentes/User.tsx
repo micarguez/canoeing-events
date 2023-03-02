@@ -41,7 +41,7 @@ if(!checkHasToken()){
             <CardMedia
               component="img"
               alt="lugar"
-              height="240"
+              height="260"
               image={ImageOne}
             />
             <CardContent>
