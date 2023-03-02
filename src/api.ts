@@ -167,13 +167,13 @@ export const crearLugar = (nombre: string, descripcion: string, tipo: string, ub
     },
     body: JSON.stringify({
       "data": {
-        nombre: nombre,
-        descripcion: descripcion,
-        tipo: tipo,
-        ubicacion: ubicacion,
-        imagen_url: imagen_url,
-        user_creador: user_creador
-      }
+        "nombre": nombre,
+        "descripcion": descripcion,
+        "tipo": tipo,
+        "ubicacion": ubicacion,
+        "imagen_url": imagen_url,
+        "user_creador": user_creador
+    }
 })
   }).then((respo) => respo.json())
   .then((res) => {
@@ -182,7 +182,7 @@ export const crearLugar = (nombre: string, descripcion: string, tipo: string, ub
           localStorage.setItem("user_id", res?.user?.id);
           window.location.reload();
         }else{
-          alert("Datos invalidos");
+          alert("Error al crear lugar - revise los campos");
         }
   });
 }

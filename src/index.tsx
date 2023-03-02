@@ -12,8 +12,8 @@ import NotFound from './Componentes/NotFound';
 import Registro from './Componentes/Registro';
 import Lugar from './Componentes/Lugar';
 import User from './Componentes/User';
-import Lugares2 from './Componentes/Lugares';
 import LugaresGuardados from './Componentes/LugaresGuardados';
+import CrearLugar from './Componentes/CrearLugar';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -25,13 +25,14 @@ root.render(
         <Routes>
             <Route path="*" element={<NotFound />}/>
             <Route path="/" element={<Home />}/>
-            <Route path="/lugares" element={<Lugares2 />}/>
+            <Route path="/lugares" element={<Lugares />}/>
             <Route path="/eventos" element={<Eventos />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/lugar/:id" element={<Lugar />} />
             <Route path="/registro" element={<Registro />}/>
             <Route path="/users/:username" element={<User />}/>
             <Route path="/lugares-guardados" element={<LugaresGuardados />}/>
+            <Route path="/crear-lugar" element={<CrearLugar />}/>
         </Routes>
     </Router>
 );
