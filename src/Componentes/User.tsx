@@ -20,16 +20,6 @@ useEffect(() => {
     fetchUsuario(username).then((data: any) => setUser(data));
 }, []);
 
- const redirectToLugaresUsuario = (user_creador: any) => {
-   //fetchLugarPorUsuario(user_creador).then((data: any) => setLugares(data));
-   window.location.replace(`/lugares`);
-   
- }
-
-// const handleChangeUsuarios = (user_creador: string) => {
-//   fetchLugarPorUsuario(user_creador).then((data: any) => setLugares(data));
-// };
-
 if(!checkHasToken()){
   window.location.replace("/login");
   return null;
@@ -59,9 +49,6 @@ if(!checkHasToken()){
                 <Typography fontSize={17} gutterBottom variant="h6" component="div">
                 Email de usuario: {user?.email}
                 </Typography>
-                <Button variant="contained" color="primary" size="small" onClick={() => redirectToLugaresUsuario(user?.username)}>
-                  Ver lugares creados por este usuario
-                </Button>
             </CardActions>
         </Card>
     </div>
