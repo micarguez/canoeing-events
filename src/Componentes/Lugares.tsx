@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { checkHasToken } from '../utils';
 import { fetchLugares, fetchLugarPorNombreYDesc, fetchLugarPorTipoAguas, fetchLugarPorUsuario, fetchUsuarios, guardarLugar } from '../api';
-import { Alert, Box, CardActions, Collapse, FormControl, FormControlLabel, FormLabel, IconButton, Radio, RadioGroup, Typography } from '@mui/material';
+import { CardActions, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 
 function Lugares() {

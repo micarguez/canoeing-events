@@ -2,3 +2,18 @@
     display: flex;
     flex-direction: column;
 }
+
+.lugares{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.wrapper-users{
+    flex-direction: column;
+}
+
+#lugares-title{
+    text-align: center;
+    padding: 25px;
+}
