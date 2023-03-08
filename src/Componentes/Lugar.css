@@ -13,10 +13,17 @@
   flex-wrap: wrap;
 }
 
+#reviews-title{
+  font-size: 30px;
+  padding-top: 25px;
+  text-align: center;
+}
+
 .reviews{
   display: flex;
   text-align: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .card{
