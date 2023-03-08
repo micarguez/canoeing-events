@@ -178,7 +178,7 @@ export const crearLugar = (nombre: string, descripcion: string, tipo: string, ub
   }).then((respo) => respo.json())
   .then((res) => {
         if(res?.data){
-          alert("Lugar creado correctamente!");
+          alert("Lugar: '" + res?.data?.attributes?.nombre + "' creado correctamente!");
           window.location.reload();
         }else{
           alert("Error al crear lugar - revise los campos");
@@ -218,7 +218,14 @@ export const eliminarLugar = (idLugar: string, token: any) => {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
       }})
-    .then(response => response.json())
+    .then((respo) => respo.json())
+    .then((res) => {
+          if(!res?.error){
+            alert("Lugar eliminado correctamente!");
+          }else{
+            alert("Error al eliminar lugar!");
+          }
+    });
 }
 
 export const crearReviewLugar = (comentario: string, rating: string, lugar: any, user: number, token: any) => {
@@ -238,6 +245,13 @@ export const crearReviewLugar = (comentario: string, rating: string, lugar: any,
     }
 })
   }).then((respo) => respo.json())
+  .then((res) => {
+        if(!res?.error){
+          alert("Review creada correctamente!");
+        }else{
+          alert("Error al crear review! Revise los campos");
+        }
+  });
 }
 
 export const fetchReviewPorLugar = (idLugar?: string) => {

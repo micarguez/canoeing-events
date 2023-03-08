@@ -22,7 +22,6 @@ const handleChange = (event: { target: { value: any; }; }) => {
 
 const handleSubmit = async (lugar: any) => {
   eliminarLugar(lugar, token);
-  alert('Se eliminó el lugar correctamente!');
   fetchLugaresGuardados(user, token).then((data: any) => setLugares(data));
 };
 

@@ -40,7 +40,6 @@ const handleSubmit = async (e: any) => {
   }else{
     crearReviewLugar(comentario, rating, id, userId, token);
     fetchReviewPorLugar(id).then((data: any) => setReviews(data));
-    alert("Creado correctamente!")
     setRating("0");
     setComentario("");
   }
