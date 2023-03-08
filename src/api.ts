@@ -177,9 +177,9 @@ export const crearLugar = (nombre: string, descripcion: string, tipo: string, ub
 })
   }).then((respo) => respo.json())
   .then((res) => {
-        if(res?.jwt){
-          localStorage.setItem("token", res?.jwt);
-          localStorage.setItem("user_id", res?.user?.id);
+        console.log(res?.data)
+        if(res?.data){
+          alert("Lugar creado correctamente!");
           window.location.reload();
         }else{
           alert("Error al crear lugar - revise los campos");
