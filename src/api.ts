@@ -216,6 +216,35 @@ export const eliminarLugar = (idLugar: string, token: any) => {
     .then(response => response.json())
 }
 
+export const crearReviewLugar = (comentario: string, rating: string, lugar: any, user: number, token: any) => {
+  fetch(`${URL}/review-lugares?populate=deep`, {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({
+      "data": {
+        "comentario": comentario,
+        "rating": rating,
+        "lugar": lugar,
+        "user": user,
+    }
+})
+  }).then((respo) => respo.json())
+}
+
+export const fetchReviewPorLugar = (idLugar?: string) => {
+  return fetch(`${URL}/review-lugares?populate=deep&filters[lugar][id][$eq]=${idLugar}`)
+    .then(response => response.json())
+    .then(
+      (resultadoApi) => {
+        return resultadoApi.data;
+      }
+    )
+};
+
 export const registro = (user: string, email: string, password: string) => {
   fetch(`${URL}/auth/local/register`, {
     method: "POST",

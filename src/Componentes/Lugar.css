@@ -12,3 +12,13 @@
   max-width: 1200px;
   flex-wrap: wrap;
 }
+
+.reviews{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.card{
+  margin: 10px;
+}
