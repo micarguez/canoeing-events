@@ -177,7 +177,6 @@ export const crearLugar = (nombre: string, descripcion: string, tipo: string, ub
 })
   }).then((respo) => respo.json())
   .then((res) => {
-        console.log(res?.data)
         if(res?.data){
           alert("Lugar creado correctamente!");
           window.location.reload();
@@ -201,8 +200,14 @@ export const guardarLugar = (lugar: string, user: any, token: any) => {
             "user": user
         }
     })
-    })
-    .then((respo) => respo.json())
+  }).then((respo) => respo.json())
+  .then((res) => {
+        if(!res?.error){
+          alert("Lugar guardado correctamente!");
+        }else{
+          alert("Error al guardar lugar!");
+        }
+  });
 }
 
 export const eliminarLugar = (idLugar: string, token: any) => {
