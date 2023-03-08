@@ -222,6 +222,7 @@ export const eliminarLugar = (idLugar: string, token: any) => {
     .then((res) => {
           if(!res?.error){
             alert("Lugar eliminado correctamente!");
+            window.location.reload()
           }else{
             alert("Error al eliminar lugar!");
           }

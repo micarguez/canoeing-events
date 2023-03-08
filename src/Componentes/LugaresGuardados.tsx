@@ -20,7 +20,7 @@ const handleChange = (event: { target: { value: any; }; }) => {
   fetchLugarGuardadoPorNombreYDesc(event.target.value, user, token).then((data: any) => setLugares(data));
 };
 
-const handleSubmit = async (lugar: any) => {
+const handleSubmit = (lugar: any) => {
   eliminarLugar(lugar, token);
   fetchLugaresGuardados(user, token).then((data: any) => setLugares(data));
 };
