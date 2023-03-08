@@ -38,7 +38,6 @@ const handleSubmit = async (lugar: any) => {
   let user = localStorage.getItem('user_id');
   let token = localStorage.getItem('token');
   guardarLugar(lugar, user, token);
-  alert('Se guardó el lugar correctamente!');
 };
 
 
