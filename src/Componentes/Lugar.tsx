@@ -47,11 +47,6 @@ const handleSubmit = async (e: any) => {
 
 };
 
-const handleRating = () => {
-  parseInt(rating) > 0 
-  ? setRating(rating.toString()) : console.log("El rating debe ser mayor a cero!")
-};
-
 if(!checkHasToken()){
   window.location.replace("/login");
   return null;
