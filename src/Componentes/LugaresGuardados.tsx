@@ -60,7 +60,7 @@ if(!checkHasToken()){
                 </Button>
                 <Button id="btnDelete" onClick={(e:any) => handleSubmit(lugar?.id)} variant="primary">
                     <DeleteIcon />
-                  </Button>
+                </Button>
               </div>
             </Card.Body>
           </Card><br /></>
