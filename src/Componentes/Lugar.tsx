@@ -10,13 +10,13 @@ import { checkHasToken } from '../utils';
 import { crearReviewLugar, fetchLugar, fetchReviewPorLugar } from '../api';
 import { useParams } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
-import { TextField } from '@mui/material';
+import { Rating, TextField } from '@mui/material';
 
 function Lugar() {
   const [lugar, setLugar] = useState<any>(null);
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState("0");
   const [comentario, setComentario] = useState("");
-  const [reviews, setReviews] = useState([])
+  const [reviews, setReviews] = useState([]);
 
 
   let token = localStorage.getItem('token');
@@ -34,11 +34,22 @@ const redirectToUser = (username: any) => {
 
 const handleSubmit = async (e: any) => {
   e.preventDefault();
-  crearReviewLugar(comentario, rating, id, userId, token);
-  fetchReviewPorLugar(id).then((data: any) => setReviews(data));
-  alert("Creado correctamente!")
-  setRating("");
-  setComentario("");
+
+  if(parseInt(rating) == 0){
+    alert("El rating debe ser mayor a cero!")
+  }else{
+    crearReviewLugar(comentario, rating, id, userId, token);
+    fetchReviewPorLugar(id).then((data: any) => setReviews(data));
+    alert("Creado correctamente!")
+    setRating("0");
+    setComentario("");
+  }
+
+};
+
+const handleRating = () => {
+  parseInt(rating) > 0 
+  ? setRating(rating.toString()) : console.log("El rating debe ser mayor a cero!")
 };
 
 if(!checkHasToken()){
@@ -83,15 +94,14 @@ if(!checkHasToken()){
           autoComplete="off"
           onSubmit={handleSubmit}
         >
-
           <div className="fields">
-            <TextField
-              label="Rating"
-              type="string"
-              autoComplete="false"
-              multiline
-              value={rating}
-              onChange={(e: any) => setRating(e.target.value)} />
+            <Typography component="legend">Rating</Typography>
+              <Rating 
+              name="simple-controlled"
+              size="large"
+              value={parseInt(rating)}
+              onChange={(event, rating) => { setRating(rating.toString()) }}
+              />
             <br />
             <br />
             <TextField
@@ -113,13 +123,21 @@ if(!checkHasToken()){
       </div>
 
       </div>
+      <div>
+        <h1 id="reviews-title">Reviews del lugar:</h1>
+      </div>
       <div className="reviews">
       {reviews?.map((review: any) => (
           <>
           <Card sx={{ maxWidth: 345 }} className="card">
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {review?.attributes?.rating}
+            <Rating 
+              name="simple-controlled"
+              size="large"
+              value={review?.attributes?.rating}
+              disabled
+              />
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {review?.attributes?.comentario}
