@@ -10,20 +10,19 @@ const CrearLugar = () => {
   const [tipo, setTipo] = useState("");
   const [ubicacion, setUbicacion] = useState("");
   const [imagen_url, setImagen_url] = useState("");
-  const [user_creador, setUser_creador] = useState("");
 
   let token = localStorage.getItem('token');
+  let user = localStorage.getItem('user_id');
 
  const handleSubmit = async (e: any) => {
   e.preventDefault();
-  crearLugar(nombre, descripcion, tipo, ubicacion, imagen_url, user_creador, token);
+  crearLugar(nombre, descripcion, tipo, ubicacion, imagen_url, user, token);
   
   setNombre("");
   setDescripcion("");
   setTipo("");
   setUbicacion("");
   setImagen_url("");
-  setUser_creador("");
 };
 
   return (
@@ -79,12 +78,7 @@ const CrearLugar = () => {
                   onChange={(e: any) => setImagen_url(e.target.value)} />
               <br />
               <br />
-              <TextField
-                  label="Usuario creador"
-                  type="string"
-                  autoComplete="false"
-                  value={user_creador}
-                  onChange={(e: any) => setUser_creador(e.target.value)} />
+              
           </div>
           <br />
           <Button variant="contained" color="primary" type="submit">
