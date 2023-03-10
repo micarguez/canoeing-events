@@ -14,6 +14,7 @@ import Lugar from './Componentes/Lugar';
 import User from './Componentes/User';
 import LugaresGuardados from './Componentes/LugaresGuardados';
 import CrearLugar from './Componentes/CrearLugar';
+import CrearEvento from './Componentes/CrearEvento';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -33,6 +34,7 @@ root.render(
             <Route path="/users/:username" element={<User />}/>
             <Route path="/lugares-guardados" element={<LugaresGuardados />}/>
             <Route path="/crear-lugar" element={<CrearLugar />}/>
+            <Route path="/crear-evento" element={<CrearEvento />}/>
         </Routes>
     </Router>
 );

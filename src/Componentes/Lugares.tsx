@@ -34,9 +34,10 @@ const handleResetearFiltro = () => {
   fetchLugares().then((data: any) => setLugares(data));
 };
 
+let user = localStorage.getItem('user_id');
+let token = localStorage.getItem('token');
+
 const handleSubmit = async (lugar: any) => {
-  let user = localStorage.getItem('user_id');
-  let token = localStorage.getItem('token');
   guardarLugar(lugar, user, token);
 };
 

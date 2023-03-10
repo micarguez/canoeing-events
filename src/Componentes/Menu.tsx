@@ -28,7 +28,7 @@ function Menu() {
                             <NavDropdown.Item className="menuButtons" href="/lugares-guardados"> Ver lugares guardados </NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown title="Eventos" id="basic-nav-dropdown">
-                            <NavDropdown.Item className="menuButtons" href="/eventos"> Crear evento </NavDropdown.Item>
+                            <NavDropdown.Item className="menuButtons" href="/crear-evento"> Crear evento </NavDropdown.Item>
                             <NavDropdown.Item className="menuButtons" href="/eventos"> Ver eventos </NavDropdown.Item>
                             <NavDropdown.Item className="menuButtons" href="/eventos"> Ver eventos guardados </NavDropdown.Item>
                         </NavDropdown>

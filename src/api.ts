@@ -265,6 +265,33 @@ export const fetchReviewPorLugar = (idLugar?: string) => {
     )
 };
 
+export const crearEvento = (nombre: string, fecha: string, lugar: string, user_creador: string, token: any) => {
+  fetch(`${URL}/eventos?populate=deep`, {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({
+      "data": {
+        "nombre": nombre,
+        "fecha": fecha,
+        "lugar": lugar,
+        "user_creador": user_creador
+    }
+})
+  }).then((respo) => respo.json())
+  .then((res) => {
+        if(res?.data){
+          alert("Evento: '" + res?.data?.attributes?.nombre + "' creado correctamente!");
+          window.location.reload();
+        }else{
+          alert("Error al crear evento - revise los campos");
+        }
+  });
+}
+
 export const registro = (user: string, email: string, password: string) => {
   fetch(`${URL}/auth/local/register`, {
     method: "POST",
