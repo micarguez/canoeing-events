@@ -229,7 +229,7 @@ export const eliminarLugar = (idLugar: string, token: any) => {
     });
 }
 
-export const crearReviewLugar = (comentario: string, rating: string, lugar: any, user: number, token: any) => {
+export const crearReviewLugar = (comentario: string, rating: string, lugar: any, user: string, token: any) => {
   fetch(`${URL}/review-lugares?populate=deep`, {
     method: "POST",
     headers: {
